@@ -1,0 +1,112 @@
+openapi: 3.0.3
+info:
+  title: My GitHub API
+  description: |-
+    This is a sample GitHub API based on the OpenAPI 3.0.
+    This API use _https://api.github.com/_ to retrieve data from GitHub.
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.1.0
+servers:
+  - url: http://localhost:8080/swagger-ui/index.html
+tags:
+  - name: repositories
+
+paths:
+  /repos/{username}:
+    get:
+      tags:
+        - repositories
+      summary: Find all (not forked) public repositories in GitHub for given user.
+      description:  |-
+        Returns a list of repositories.
+        
+        Details contains repository name, owner login and list of all branches (name and last commit sha).
+
+      operationId: getAllReposForUser
+      parameters:
+        - name: username
+          in: path
+          description: Gitub account username
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repositories'
+        '404':
+          description: Invalid username provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '406':
+          description: Invalid header provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          headers:
+            Accept:
+              description: Supported type is application/json
+              schema:
+                type: string
+
+components:
+  schemas:
+    Repositories:
+      required:
+        - repoName
+        - userLogin
+        - branches
+      type: object
+      properties:
+        repoName:
+          type: string
+          example: my-example-repository
+        userLogin:
+          type: string
+          example: jondoe
+        branches:
+          type: array
+          items:
+            $ref: '#/components/schemas/GitHubBranch'
+    GitHubBranch:
+      required:
+        - name
+        - commit
+      type: object
+      properties:
+        name:
+          type: string
+          example: main
+        commit:
+          $ref: '#/components/schemas/GitHubCommit'
+    GitHubCommit:
+      required:
+        - sha
+      type: object
+      properties:
+        sha:
+          type: string
+          example: 453ca518adfbc91795fbbdddeb9fce1b57bebebe
+    ErrorResponse:
+      required:
+        - status
+        - message
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 404
+        message:
+          type: string
+          example: Reason why has it happened
