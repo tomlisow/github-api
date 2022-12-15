@@ -15,6 +15,11 @@ import java.util.List;
 @Service
 public class GitHubServiceImpl implements GitHubService {
     private static final String API_CORE = "https://api.github.com/";
+    private final RestTemplate template;
+
+    public GitHubServiceImpl(RestTemplate template) {
+        this.template = template;
+    }
 
     public List<RepositoriesResult> getRepositoriesResult(String username) {
         GitHubRepository[] gitHubRepositories = getRepositories(username);
@@ -47,8 +52,7 @@ public class GitHubServiceImpl implements GitHubService {
         return result;
     }
 
-    private static JSONArray getJsonFromEndpoint(String endpoint) {
-        RestTemplate template = new RestTemplate();
+    private JSONArray getJsonFromEndpoint(String endpoint) {
         JSONArray object = template.getForObject(endpoint, JSONArray.class);
         assert object != null : "Object returned from RestTemplate under \"" + endpoint + "\" is null";
         return object;
