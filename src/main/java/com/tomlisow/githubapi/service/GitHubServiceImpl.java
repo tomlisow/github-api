@@ -26,14 +26,14 @@ public class GitHubServiceImpl {
         List<RepositoriesResult> result = new ArrayList<>();
 
         for (GitHubRepository repo : gitHubRepositories) {
-            if (repo.getFork()) {
+            if (repo.fork()) {
                 continue;
             }
 
             List<GitHubBranch> branches = gitHubClient.getBranchesFromRepository(repo);
             RepositoriesResult repositoriesResult = new RepositoriesResult(
-                    repo.getName(),
-                    repo.getOwner().login(),
+                    repo.name(),
+                    repo.owner().login(),
                     branches);
             result.add(repositoriesResult);
         }

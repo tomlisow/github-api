@@ -32,11 +32,11 @@ public class GitHubClient {
     //FIXME - should throw dedicated exception type
     //such error is possible if the response from GitHub contains invalid endpoint to the branches resource
     public List<GitHubBranch> getBranchesFromRepository(final GitHubRepository gitHubRepository) throws HttpClientErrorException {
-        if (gitHubRepository.getBranchesUrl() == null
-                || gitHubRepository.getBranchesUrl().isBlank()) {
+        if (gitHubRepository.branches_url() == null
+                || gitHubRepository.branches_url().isBlank()) {
             return new ArrayList<>();
         }
-        String branchesEndpoint = gitHubRepository.getBranchesUrl().replace("{/branch}", "");
+        String branchesEndpoint = gitHubRepository.branches_url().replace("{/branch}", "");
         return template.exchange(branchesEndpoint,
                 HttpMethod.GET,
                 null,
