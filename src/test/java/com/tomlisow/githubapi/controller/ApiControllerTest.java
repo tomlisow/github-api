@@ -1,6 +1,6 @@
 package com.tomlisow.githubapi.controller;
 
-import com.tomlisow.githubapi.service.GitHubService;
+import com.tomlisow.githubapi.service.GitHubServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -29,7 +29,7 @@ class ApiControllerTest {
     MockMvc mockMvc;
 
     @MockBean
-    GitHubService gitHubService;
+    GitHubServiceImpl gitHubService;
 
     @Test
     void getAllReposWhenValidUserAndMediaType() throws Exception {
@@ -71,5 +71,4 @@ class ApiControllerTest {
                 .andExpect(content().string(STATUS_406_MESSAGE))
                 .andExpect(status().isNotAcceptable());
     }
-
 }

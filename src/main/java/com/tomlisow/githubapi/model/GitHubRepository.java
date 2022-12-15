@@ -10,6 +10,13 @@ public class GitHubRepository {
     @SerializedName(value = "branches_url")
     private String branchesUrl;
 
+    public GitHubRepository(String name, GitHubRepositoryOwner owner, Boolean isFork, String branchesUrl) {
+        this.name = name;
+        this.owner = owner;
+        this.isFork = isFork;
+        this.branchesUrl = branchesUrl;
+    }
+
     public String getName() {
         return name;
     }
