@@ -1,0 +1,10 @@
+[
+  {
+    "name": "repo-name",
+    "owner": {
+      "login": "ownerLogin"
+    },
+    "fork": false,
+    "branches_url": "http://someurl/branches"
+  }
+]

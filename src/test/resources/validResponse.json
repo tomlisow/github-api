@@ -1,0 +1,14 @@
+[
+  {
+    "repoName": "repo-name",
+    "userLogin": "ownerLogin",
+    "branches": [
+      {
+        "name": "main",
+        "commit": {
+          "sha": "sha1-hash"
+        }
+      }
+    ]
+  }
+]

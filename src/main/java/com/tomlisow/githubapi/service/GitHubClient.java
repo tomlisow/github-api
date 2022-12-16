@@ -35,7 +35,7 @@ public class GitHubClient {
         if (isInvalidRepository(gitHubRepository)) {
             return List.of();
         }
-        String branchesEndpoint = gitHubRepository.branches_url();//.replace("{/branch}", "");
+        String branchesEndpoint = gitHubRepository.branches_url().replace("{/branch}", "");
         return template.exchange(branchesEndpoint,
                 HttpMethod.GET,
                 null,
