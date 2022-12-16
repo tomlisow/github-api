@@ -8,6 +8,12 @@ To run the application you simply need to execute this command in your command l
     mvn spring-boot:run
 
 ###
+You can also use Dockerfile to build and run the image:
+
+    docker build -t github-api .
+    docker run -p 8080:8080 github-api
+
+###
 There is available only one endpoint for now:
     
     http://localhost:8080/repos/{username}
@@ -24,4 +30,6 @@ You can try this query:
 
 Or you can try example requests from "**postman**" catalog in Postman application.
 
-### As a result you should receive one repository named ***git-test*** with 2 branches: ***develop*** and ***master***
+### As a result you should receive two repositories named:
+* ### ***git-test*** with 2 branches: ***develop*** and ***master***
+* ### ***github-api*** with 1 branch: ***develop***
