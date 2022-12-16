@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class GitHubServiceImpl {
+public class GitHubService {
     final
     GitHubClient gitHubClient;
 
-    public GitHubServiceImpl(GitHubClient gitHubClient) {
+    public GitHubService(GitHubClient gitHubClient) {
         this.gitHubClient = gitHubClient;
     }
 

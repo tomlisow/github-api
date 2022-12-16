@@ -1,7 +1,7 @@
 package com.tomlisow.githubapi.controller;
 
 import com.tomlisow.githubapi.model.RepositoriesResult;
-import com.tomlisow.githubapi.service.GitHubServiceImpl;
+import com.tomlisow.githubapi.service.GitHubService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,9 +12,9 @@ import java.util.List;
 @RestController
 public class ApiController {
 
-    final GitHubServiceImpl gitHubService;
+    final GitHubService gitHubService;
 
-    public ApiController(GitHubServiceImpl gitHubService) {
+    public ApiController(GitHubService gitHubService) {
         this.gitHubService = gitHubService;
     }
 
